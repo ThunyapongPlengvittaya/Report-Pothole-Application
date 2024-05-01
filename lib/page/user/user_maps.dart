@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class UserMaps extends StatefulWidget {
@@ -20,11 +19,11 @@ class _UserMapsState extends State<UserMaps> {
   @override
   void initState() {
     super.initState();
-    _loadPotholeIcon();
-    _fetchPotholeLocationsAndDisplay();
+    loadPotholeIcon();
+    displayPothole();
   }
 
-  Future<void> _loadPotholeIcon() async {
+  Future<void> loadPotholeIcon() async {
     potholeIcon = await BitmapDescriptor.fromAssetImage(
       const ImageConfiguration(devicePixelRatio: 0.2),
       'assets/pothole_icon.png',
@@ -35,11 +34,9 @@ class _UserMapsState extends State<UserMaps> {
     );
   }
 
-  Future<void> _fetchPotholeLocationsAndDisplay() async {
-    String userId =
-        FirebaseAuth.instance.currentUser!.uid; // Get current user ID
+  Future<void> displayPothole() async {
+    String userId = FirebaseAuth.instance.currentUser!.uid;
 
-    // Fetch pothole locations for the current user
     FirebaseFirestore.instance
         .collection('users')
         .doc(userId)
@@ -48,27 +45,21 @@ class _UserMapsState extends State<UserMaps> {
         .then((querySnapshot) {
       Set<Marker> newMarkers = {};
       for (var pothole in querySnapshot.docs) {
-        Map<String, dynamic> data = pothole.data() as Map<String, dynamic>;
+        Map<String, dynamic> data = pothole.data();
         LatLng potholeLocation = LatLng(
           data['location']['latitude'],
           data['location']['longitude'],
         );
         BitmapDescriptor icon =
-            data['status'] == true ? noPothole! : potholeIcon!;
+            data['status'] == true ? potholeIcon! : noPothole!;
 
         Marker marker = Marker(
           markerId: MarkerId(pothole.id),
           position: potholeLocation,
           icon: icon,
-          // infoWindow: InfoWindow(
-          //   title: 'Pothole Reported',
-          //   snippet: 'Reported on: ${data['createdAt']}',
-          // ),
         );
-
         newMarkers.add(marker);
       }
-
       setState(() {
         _markers = newMarkers;
       });
@@ -79,30 +70,6 @@ class _UserMapsState extends State<UserMaps> {
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
-  }
-
-  Future<Position> _determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return Future.error('Location services are disabled.');
-    }
-
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error('Location permissions are denied');
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      return Future.error('Location permissions are permanently denied');
-    }
-
-    return await Geolocator.getCurrentPosition();
   }
 
   @override

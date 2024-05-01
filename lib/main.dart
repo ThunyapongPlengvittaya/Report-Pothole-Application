@@ -9,6 +9,7 @@ void main() async {
   await Geolocator.requestPermission();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+    name: 'Test1',
   );
   runApp(const MyApp());
 }

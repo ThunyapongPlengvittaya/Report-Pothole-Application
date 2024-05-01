@@ -17,7 +17,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // text controller
   final TextEditingController emailController = TextEditingController();
 
   final TextEditingController passwordController = TextEditingController();
@@ -32,7 +31,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void login() async {
-    // show loading circle
     showDialog(
       context: context,
       builder: (context) => const Center(
@@ -40,16 +38,13 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
 
-    // sign in
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
-      // pop loading circle
       if (context.mounted) Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
-      //pop loading circle
       Navigator.pop(context);
       displayMessageToUser(e.code, context);
     }
@@ -58,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(25.0),
         child: Center(

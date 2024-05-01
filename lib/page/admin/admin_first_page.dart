@@ -18,53 +18,48 @@ class _AdminFirstPageState extends State<AdminFirstPage> {
   @override
   void initState() {
     super.initState();
-    _loadIconsAndFetchPotholes();
+    loadIconsAndFetchPotholes();
   }
 
-  Future<void> _loadIcons() async {
+  Future<void> loadIcons() async {
     potholeIcon = await BitmapDescriptor.fromAssetImage(
-      ImageConfiguration(devicePixelRatio: 2.5),
+      const ImageConfiguration(devicePixelRatio: 2.5),
       'assets/pothole_icon.png',
     );
     noPothole = await BitmapDescriptor.fromAssetImage(
-      ImageConfiguration(devicePixelRatio: 2.5),
+      const ImageConfiguration(devicePixelRatio: 2.5),
       'assets/location.png',
     );
   }
 
-  Future<void> _loadIconsAndFetchPotholes() async {
-    await _loadIcons();
-    await _fetchAllPotholeLocationsAndDisplay();
+  Future<void> loadIconsAndFetchPotholes() async {
+    await loadIcons();
+    await displayPothole();
   }
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
 
-  Future<void> _fetchAllPotholeLocationsAndDisplay() async {
+  Future<void> displayPothole() async {
     FirebaseFirestore.instance
         .collectionGroup('potholes')
         .get()
         .then((querySnapshot) {
       Set<Marker> newMarkers = {};
       for (var potholeDoc in querySnapshot.docs) {
-        Map<String, dynamic> potholeData =
-            potholeDoc.data() as Map<String, dynamic>;
+        Map<String, dynamic> potholeData = potholeDoc.data();
         LatLng potholeLocation = LatLng(
           potholeData['location']['latitude'],
           potholeData['location']['longitude'],
         );
-        BitmapDescriptor icon =
-            potholeData['status'] == true ? noPothole! : potholeIcon!;
+        BitmapDescriptor? icon =
+            potholeData['status'] == true ? potholeIcon : noPothole;
 
         Marker marker = Marker(
           markerId: MarkerId(potholeDoc.id),
           position: potholeLocation,
-          icon: icon,
-          // infoWindow: InfoWindow(
-          //   title: potholeData['status'] == true ? 'No Pothole' : 'Pothole',
-          //   snippet: 'Reported on: ${potholeData['createdAt']}',
-          // ),
+          icon: icon!,
         );
 
         newMarkers.add(marker);
@@ -85,8 +80,8 @@ class _AdminFirstPageState extends State<AdminFirstPage> {
         myLocationEnabled: true,
         myLocationButtonEnabled: true,
         zoomControlsEnabled: false,
-        initialCameraPosition: CameraPosition(
-          target: const LatLng(14.0731, 100.6098), // Central position
+        initialCameraPosition: const CameraPosition(
+          target: LatLng(14.0731, 100.6098),
           zoom: 11.0,
         ),
       ),

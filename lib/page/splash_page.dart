@@ -23,11 +23,11 @@ class _SplashScreenState extends State<SplashScreen>
 
   Route _createFadeRoute() {
     return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => AuthPage(),
+      pageBuilder: (context, animation, secondaryAnimation) => const AuthPage(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         return SlideTransition(
           position: Tween<Offset>(
-            begin: const Offset(3.0, 0.0), // Right to left
+            begin: const Offset(3.0, 0.0),
             end: Offset.zero,
           ).animate(animation),
           child: child,
@@ -53,18 +53,25 @@ class _SplashScreenState extends State<SplashScreen>
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               SizedBox(
-                width: 100, // Set your desired width for the icon
-                height: 100, // Set your desired height for the icon
+                width: 100,
+                height: 100,
                 child: Image.asset('assets/splash_icon.png'),
               ),
-              SizedBox(height: 20), // Provide space between the icon and text
+              const SizedBox(height: 20),
               const Text(
-                'Pothole Report Application', // Replace with your app name or any text you want to display
+                'Pothole Report Application',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors
-                      .white, // Choose a color that contrasts with both background colors
+                  color: Colors.white,
+                ),
+              ),
+              const Text(
+                'Thammasat Rangsit Campus',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
             ],

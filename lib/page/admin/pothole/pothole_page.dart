@@ -61,7 +61,7 @@ class _PotholePageState extends State<PotholePage> {
           'id': potholeDoc.id,
           'imageUrl': potholeDoc.data()['imageUrl'] as String,
           'status': potholeDoc.data()['status'] as bool,
-          'confidence':potholeDoc.data()['confidence'] as String,
+          'confidence': potholeDoc.data()['confidence'] as String,
         });
       }
 
@@ -102,10 +102,10 @@ class _PotholePageState extends State<PotholePage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(user.email,
-                  style: TextStyle(fontWeight: FontWeight.bold)),
+                  style: const TextStyle(fontWeight: FontWeight.bold)),
             ),
-            Container(
-              height: 300, // Increased height to accommodate the status text
+            SizedBox(
+              height: 300,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: user.potholes.length,
@@ -120,24 +120,23 @@ class _PotholePageState extends State<PotholePage> {
                           width: 200,
                           height: 200,
                         ),
-                        Text(
-                          pothole['status'] ? 'True' : 'False',
-                        ),
+                        const SizedBox(height: 10),
                         Text(
                           'confidence score: ${pothole['confidence']}',
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            // New status is the opposite of the current status
                             bool newStatus = !pothole['status'];
                             setState(() {
                               pothole['status'] = newStatus;
                             });
-                            // Call the method to update the status in Firestore
                             updatePotholeStatus(
                                 user.id, pothole['id'], newStatus);
                           },
-                          child: Text('ตรวจ/แก้ แล้ว'),
+                          child: const Text(
+                            'ไม่ถูกต้อง',
+                            style: TextStyle(color: Colors.black),
+                          ),
                         ),
                       ],
                     ),
@@ -160,7 +159,7 @@ class _PotholePageState extends State<PotholePage> {
           if (snapshot.connectionState == ConnectionState.done) {
             return buildUsersList(snapshot.data!);
           }
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         },
       ),
     );

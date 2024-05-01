@@ -15,35 +15,39 @@ class _AdminHomePageState extends State<AdminHomePage> {
     await FirebaseAuth.instance.signOut();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Center(child: Text("You have successfully signed out.")),
+        content: Center(child: Text("Signed out.")),
       ),
     );
   }
 
   int currentTab = 1;
   final List<Widget> screens = [
-    AdminFirstPage(),
-    AdminSecondPage(),
+    const AdminFirstPage(),
+    const AdminSecondPage(),
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
-  Widget currentScreen = AdminFirstPage();
+  Widget currentScreen = const AdminFirstPage();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Admin"),
+        title: const Text("Admin", style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.redAccent,
         actions: [
           IconButton(
             onPressed: () => logout(context),
-            icon: Icon(Icons.logout),
+            icon: const Icon(
+              Icons.logout,
+              color: Colors.white,
+            ),
           ),
         ],
       ),
       body: screens[currentTab],
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.redAccent,
         onTap: (index) {
           setState(() {
             currentTab = index;
@@ -52,11 +56,15 @@ class _AdminHomePageState extends State<AdminHomePage> {
         currentIndex: currentTab,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.share_location),
+            icon: Icon(
+              Icons.share_location,
+            ),
             label: 'Overview',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.insert_photo),
+            icon: Icon(
+              Icons.insert_photo,
+            ),
             label: 'All Photo',
           ),
         ],

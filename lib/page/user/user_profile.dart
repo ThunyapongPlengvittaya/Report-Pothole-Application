@@ -32,10 +32,7 @@ class _UserProfileState extends State<UserProfile> {
             return const Center(
               child: CircularProgressIndicator(),
             );
-          }
-          // data received
-          else {
-            // extract data
+          } else {
             Map<String, dynamic>? user = snapshot.data!.data();
             return Center(
               child: Column(

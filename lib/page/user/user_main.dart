@@ -59,11 +59,9 @@ class _UserMainPageState extends State<UserMain> {
           latitude: locationData['latitude'] as double,
           longitude: locationData['longitude'] as double,
           confidence: data['confidence'] as String,
-          
         );
       }).toList();
 
-      // Sort the potholes list to have false status potholes first
       newPotholes.sort((a, b) => a.status ? 1 : -1);
 
       setState(() {
@@ -80,9 +78,10 @@ class _UserMainPageState extends State<UserMain> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+              style:
+                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
         ),
-        Container(
+        SizedBox(
           height: 250,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -100,7 +99,7 @@ class _UserMainPageState extends State<UserMain> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Column( 
+                      child: Column(
                         children: [
                           Text(
                             'Lat: ${pothole.latitude.toStringAsFixed(4)}, Lng: ${pothole.longitude.toStringAsFixed(4)}',
@@ -125,7 +124,6 @@ class _UserMainPageState extends State<UserMain> {
 
   @override
   Widget build(BuildContext context) {
-    // Separate potholes based on their status
     List<Pothole> trueStatusPotholes =
         _potholes.where((p) => p.status).toList();
     List<Pothole> falseStatusPotholes =
@@ -137,14 +135,14 @@ class _UserMainPageState extends State<UserMain> {
           await getUserPotholes();
         },
         child: SingleChildScrollView(
-          physics: AlwaysScrollableScrollPhysics(), // Ensure there's always something to scroll
+          physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
             children: [
               if (trueStatusPotholes.isNotEmpty)
-                buildPotholeSection(trueStatusPotholes, 'Have Potholes (Status: true)'),
-              SizedBox(height: 20),
+                buildPotholeSection(trueStatusPotholes, 'Have Potholes'),
+              const SizedBox(height: 5),
               if (falseStatusPotholes.isNotEmpty)
-                buildPotholeSection(falseStatusPotholes, 'No Potholes (Status: false)'),
+                buildPotholeSection(falseStatusPotholes, 'No Potholes'),
             ],
           ),
         ),

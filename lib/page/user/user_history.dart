@@ -11,9 +11,6 @@ class UserHistory extends StatefulWidget {
 }
 
 class _UserHistoryState extends State<UserHistory> {
-  FirebaseAuth _auth = FirebaseAuth.instance;
-  FirebaseStorage _storage = FirebaseStorage.instance;
-
   List<Reference> _imageReferences = [];
 
   @override
@@ -23,76 +20,53 @@ class _UserHistoryState extends State<UserHistory> {
   }
 
   Future<void> getUserImages() async {
-    final User? user = _auth.currentUser;
+    final User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       final String uid = user.uid;
-      ListResult result = await _storage.ref('user_images/$uid').listAll();
+      ListResult result =
+          await FirebaseStorage.instance.ref('user_images/$uid').listAll();
       setState(() {
         _imageReferences = result.items;
       });
     }
-    // This will return a future that completes after setState is called
     return Future.value();
   }
 
   Future<void> deleteImage(Reference ref) async {
-    try {
-      // Get the user's UID. This assumes you have it stored or can retrieve it.
-      final String uid = FirebaseAuth.instance.currentUser?.uid ?? '';
+    String userId = FirebaseAuth.instance.currentUser?.uid ?? '';
 
-      String imageUrl = await ref.getDownloadURL();
-
-      // Extract the pothole document ID from the Reference
-      // This assumes your Reference's full path is in the format:
-      // "potholes/{uid}/{potholeId}.jpg"
-      // final List<String> pathSegments = ref.fullPath.split('/');
-      // final String potholeId = pathSegments[2].split('.').first;
-
-      // Delete the image from Firebase Storage
-      await ref.delete();
-
-      // Delete the corresponding pothole document from Firestore
-      final querySnapshot = await FirebaseFirestore.instance
+    String imageUrl = await ref.getDownloadURL();
+    await ref.delete();
+    final querySnapshot = await FirebaseFirestore.instance
         .collection('users')
-        .doc(uid)
+        .doc(userId)
         .collection('potholes')
         .where('imageUrl', isEqualTo: imageUrl)
         .get();
-
-      // If the document exists, delete it
-      for (var doc in querySnapshot.docs) {
-        await doc.reference.delete();
-        print('Firestore document deleted.');
-      }
-      
-      // Refresh the UI
-      await getUserImages();
-    } catch (e) {
-      print('Error when deleting image: $e');
-      // Handle the error appropriately
+    for (var doc in querySnapshot.docs) {
+      await doc.reference.delete();
     }
+    await getUserImages();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: RefreshIndicator(
-        onRefresh: getUserImages, // Called when the user pulls down the list
+        onRefresh: getUserImages,
         child: GridView.builder(
           padding: const EdgeInsets.all(10),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount:
-                  2, // Consider reducing to 1 for larger, full-width images
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              childAspectRatio:
-                  0.75 // Adjust based on your images' aspect ratio; closer to 1 might be more suitable for square images
-              ),
+            crossAxisCount: 2,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            childAspectRatio: 0.75,
+          ),
           itemCount: _imageReferences.length,
           itemBuilder: (context, index) {
             final Reference reference = _imageReferences[index];
             return GestureDetector(
-              onTap: () => {/* Handle your onTap action here */},
+              onTap: () => {},
               child: FutureBuilder<String>(
                 future: reference.getDownloadURL(),
                 builder: (context, snapshot) {
@@ -104,7 +78,7 @@ class _UserHistoryState extends State<UserHistory> {
                   }
 
                   return Padding(
-                    padding: EdgeInsets.all(4),
+                    padding: const EdgeInsets.all(4),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -118,9 +92,7 @@ class _UserHistoryState extends State<UserHistory> {
                           padding: const EdgeInsets.all(4),
                           child: Text(
                             'Photo ${index + 1}',
-                            style: TextStyle(
-                                fontSize:
-                                    10), // Consider reducing the font size
+                            style: const TextStyle(fontSize: 10),
                           ),
                         ),
                         IconButton(

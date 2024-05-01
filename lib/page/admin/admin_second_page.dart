@@ -21,11 +21,9 @@ class AdminSecondPage extends StatelessWidget {
                     Tab(text: 'Potholes'),
                     Tab(text: 'No Potholes'),
                   ],
-                  indicatorColor: Colors.blue, // Set the indicator color here
-                  labelColor: Colors
-                      .blueAccent, // Set the text color of the selected tab
-                  unselectedLabelColor: Color.fromARGB(255, 97, 97,
-                      97), // Set the text color of the unselected tabs
+                  indicatorColor: Colors.blue,
+                  labelColor: Colors.blueAccent,
+                  unselectedLabelColor: Color.fromARGB(255, 97, 97, 97),
                 ),
               ),
               Expanded(

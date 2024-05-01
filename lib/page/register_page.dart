@@ -18,7 +18,6 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  // text controller
   final TextEditingController usernameController = TextEditingController();
 
   final TextEditingController emailController = TextEditingController();
@@ -35,50 +34,32 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  // register method
   void register() async {
-    // show loading circle
     showDialog(
       context: context,
       builder: (context) => const Center(
         child: CircularProgressIndicator(),
       ),
     );
-    // make sure passwords match
     if (passwordController.text != confirmPwController.text) {
-      // loading circle
       Navigator.pop(context);
-
-      // show error message
-      displayMessageToUser("Password don't match", context);
-    }
-    //if passwords match
-    else {
-      // creating user
+      displayMessageToUser("Password incorrect", context);
+    } else {
       try {
-        // create user
         UserCredential? userCredential =
             await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text,
           password: passwordController.text,
         );
-
-        // create a user document and add to firestore
         createUserDocument(userCredential);
-
-        // pop loading cicle
         if (context.mounted) Navigator.pop(context);
       } on FirebaseAuthException catch (e) {
-        // pop loading cicle
         Navigator.pop(context);
-
-        // display error message to user
         displayMessageToUser(e.code, context);
       }
     }
   }
 
-  // create a user document and collect them in firestore
   Future<void> createUserDocument(UserCredential? userCredential) async {
     if (userCredential != null && userCredential.user != null) {
       User? currentUser = FirebaseAuth.instance.currentUser;
@@ -93,7 +74,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Colors.white24,
       body: Padding(
         padding: const EdgeInsets.all(25.0),
         child: Center(
@@ -108,7 +89,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
               const SizedBox(height: 10),
 
-              // username textfield
               MyTextField(
                 hintText: "username",
                 obscureText: false,
@@ -141,7 +121,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
               const SizedBox(height: 10),
 
-              // register buton
               MyButton(
                 text: "Register",
                 onTap: register,
@@ -152,7 +131,7 @@ class _RegisterPageState extends State<RegisterPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Already have an account? "),
+                  const Text("Already have an account? "),
                   GestureDetector(
                     onTap: widget.onTap,
                     child: const Text(
