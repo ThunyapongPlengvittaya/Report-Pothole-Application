@@ -10,10 +10,8 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
-  // current logged in user
   User? currentUser = FirebaseAuth.instance.currentUser;
 
-  // future to fetch user details
   Future<DocumentSnapshot<Map<String, dynamic>>> getUserDetails() async {
     return await FirebaseFirestore.instance
         .collection("users")
