@@ -41,6 +41,7 @@ root_project_folder/
 
 - mobile application นี้จะใช้ flutter จึงจำเป็นจะต้องมี complier สำหรับภาษา dart สามารถ download ได้ที่นี่ [Flutter installation](https://docs.flutter.dev/get-started/install)
 - เป็นระบบ iOS ดังนั้นจึงจะต้องใช้ Xcode ในการทดสอบการใช้งานซึ่งจะมีแค่ในระบบ macOS เท่านั้น
+- หากต้องการใช้งานในเครื่อง iphone แบบ physical จะต้องมี Xcode developer account 
 
 ## ขั้นตอนการตั้งค่าเริ่มต้น
 
@@ -61,10 +62,18 @@ flutter pub get
 pod install
 ```
 
-## ขั้นตอนการเปิดใช้งาน Xcode ใน iphone simulator หรือ เครื่อง iphone
+## ขั้นตอนการเปิดใช้งาน Report pothole application เฉพาะใน iOS device simulator 
+- สร้าง simulator device ที่เป็น iphone version ไหนก็ได้ขึ้นมา
+- เปิด terminal ใน folder ของโปรเจคขึ้นมา แล้วรัน command ดังนี้
+```bash
+flutter run
+```
+- รอให้แอปพลิเคขันเปิดขึ้นมา
+
+## ขั้นตอนการเปิดใช้งาน Xcode ใน physical iphone
 
 - ไปที่ folder ios และเปิดไฟล์ Runner.xcworkspace ใน Xcode
-- จากนั้นกด run และรอให้ build ขึ้น succeeded
+- จากนั้นกดปุ่ม run และรอให้ build ขึ้น succeeded
 - ทดลองใช้งาน report pothole mobile application
 
 ## ขั้นตอนการทดสอบระบบ
