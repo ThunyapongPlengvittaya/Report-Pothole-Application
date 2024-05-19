@@ -2,11 +2,20 @@
 
 ```plaintext
 pothole-flutter/
-├── assets/
+├── assets/ #image
 │   ├── location.png
 │   ├── pothole_icon.png
 │   └── splash_icon.png
 ├── ios/
+│   ├── Flutter/
+│   ├── Runner.xcodeproj
+│   ├── Runner.xcworkspace #ใช้เปิด xcode
+│   ├── Runner/
+│   ├── RunnerTests/
+│   ├── .gitignore
+│   ├── GoogleService-Info.plist #ใส่ google maps api key ลงไปในนี้
+│   ├── Podfile
+│   └── Podfile.lock
 ├── lib/
 │   ├── auth/
 │   ├── components/
@@ -30,7 +39,7 @@ pothole-flutter/
 ├── .metadata
 ├── analysis_options.yaml
 ├── pubspec.lock
-├── pubspec.yaml
+├── pubspec.yaml #dependencies ที่ใช้ทั้งหมด
 └── README.md
 
 ```
