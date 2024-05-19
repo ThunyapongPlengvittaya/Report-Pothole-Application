@@ -58,7 +58,7 @@ pothole-flutter/
 - clone ทั้ง folder
 - เข้าไปที่ไฟล์ GoogleService-Info.plist จากนั้นก็เอา google maps api key ของตัวเองใส่ลงไปในช่อง string ใต้ API_KEY
 - 
-## ขั้นตอนการดาวโหลด dependencies and packages ที่จำเป็น
+## ขั้นตอนการดาวโหลด dependencies ที่จำเป็น
 
 - ดาวโหลด dependencies ของ flutter จะใช้คำสั่งใน terminal ดังนี้
 
