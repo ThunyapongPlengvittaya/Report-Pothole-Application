@@ -30,5 +30,13 @@ pod install
 - จากนั้นกด run และรอให้ build ขึ้น succeeded
 - ทดลองใช้งาน report pothole mobile application
 
+## ขั้นตอนการทดสอบระบบ
+- เข้าสู่ระบบในสถานะ admin โดยจะใช้ email และ password ดังนี้
+```bash
+admin@gmail.com
+cstu65
+```
+- เข้าสู่ระบบในสถานะ user สามารถสมัครได้เลย
+
 
 
