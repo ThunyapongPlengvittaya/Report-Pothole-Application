@@ -1,3 +1,39 @@
+## Directory Structure
+
+```plaintext
+root_project_folder/
+├── .dart_tool/
+├── assets/
+├── build/
+├── ios/
+├── lib/
+│   ├── auth/
+│   │   ├── auth.dart
+│   │   └── login_or_register.dart
+│   ├── components/
+│   │   ├── my_button.dart
+│   │   └── my_textfield.dart
+│   └── page/
+│       ├── admin/
+│       │   ├── pothole/
+│       │   │   ├── admin_first_page.dart
+│       │   │   ├── admin_home_page.dart
+│       │   │   └── admin_second_page.dart
+│       └── user/
+│           ├── login_page.dart
+│           ├── register_page.dart
+│           └── splash_page.dart
+├── main.dart
+├── .flutter-plugins
+├── .flutter-plugins-dependencies
+├── .gitignore
+├── .metadata
+├── analysis_options.yaml
+├── pubspec.lock
+├── pubspec.yaml
+└── README.md
+
+
 # วีธีการใช้งาน report pothole mobile application โดยเครื่องที่ใช้พัฒนาจะเป็นระบบ macOS ชิป M3
 
 ## ข้อกำหนดเบื้องต้น
