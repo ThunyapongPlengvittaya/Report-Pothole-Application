@@ -1,8 +1,7 @@
-## Directory Structure
+## Directory Tree
 
 ```plaintext
 root_project_folder/
-├── .dart_tool/
 ├── assets/
 ├── build/
 ├── ios/
