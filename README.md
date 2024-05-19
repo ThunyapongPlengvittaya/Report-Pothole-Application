@@ -1,37 +1,38 @@
 ## Directory Tree
 
 ```plaintext
-root_project_folder/
-├── .dart_tool/
+pothole-flutter/
 ├── assets/
-├── build/
+│   ├── location.png
+│   ├── pothole_icon.png
+│   └── splash_icon.png
 ├── ios/
 ├── lib/
 │   ├── auth/
-│   │   ├── auth.dart
-│   │   └── login_or_register.dart
 │   ├── components/
 │   │   ├── my_button.dart
 │   │   └── my_textfield.dart
-│   └── page/
-│       ├── admin/
-│       │   ├── pothole/
-│       │   │   ├── admin_first_page.dart
-│       │   │   ├── admin_home_page.dart
-│       │   │   └── admin_second_page.dart
-│       └── user/
-│           ├── login_page.dart
-│           ├── register_page.dart
-│           └── splash_page.dart
-├── main.dart
-├── .flutter-plugins
-├── .flutter-plugins-dependencies
+│   ├── page/
+│   │   ├── admin/
+│   │   │   ├── pothole/
+│   │   │   │   ├── no_pothole_page.dart
+│   │   │   │   └── pothole_page.dart
+│   │   │   ├── admin_first_page.dart
+│   │   │   ├── admin_home_page.dart
+│   │   │   └── admin_second_page.dart
+│   │   └── user/
+│   │       ├── login_page.dart
+│   │       ├── register_page.dart
+│   │       └── splash_page.dart
+│   ├── firebase_options.dart
+│   └── main.dart
 ├── .gitignore
 ├── .metadata
 ├── analysis_options.yaml
 ├── pubspec.lock
 ├── pubspec.yaml
 └── README.md
+
 ```
 
 
