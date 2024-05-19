@@ -2,6 +2,7 @@
 
 ```plaintext
 root_project_folder/
+├── .dart_tool/
 ├── assets/
 ├── build/
 ├── ios/
@@ -31,6 +32,7 @@ root_project_folder/
 ├── pubspec.lock
 ├── pubspec.yaml
 └── README.md
+```
 
 
 # วีธีการใช้งาน report pothole mobile application โดยเครื่องที่ใช้พัฒนาจะเป็นระบบ macOS ชิป M3
