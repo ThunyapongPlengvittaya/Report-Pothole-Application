@@ -2,16 +2,28 @@
 
 ```plaintext
 Pothole-flutter/
-├── assets/
-├── ios/
-├── lib/
+├── assets/ #image
+│   ├── location.png
+│   ├── pothole_icon.png
+│   └── splash_icon.png
+├── ios/ #สำหรับทดสอบบน iOS
+│   ├── Flutter/
+│   ├── Runner.xcodeproj
+│   ├── Runner.xcworkspace #ใช้เปิด xcode
+│   ├── Runner/
+│   ├── RunnerTests/
+│   ├── .gitignore
+│   ├── GoogleService-Info.plist #ใส่ google maps api key ลงไปในนี้
+│   ├── Podfile
+│   └── Podfile.lock
+├── lib/ #ส่วนของโค้ด
 │   ├── auth/
 │   │   ├── auth.dart
 │   │   └── login_or_register.dart
 │   ├── components/
 │   │   ├── my_button.dart
 │   │   └── my_textfield.dart
-│   ├──  page/
+│   ├── page/
 │   │   ├── admin/
 │   │   │   ├── pothole/
 │   │   │   │   ├── admin_first_page.dart
@@ -28,13 +40,11 @@ Pothole-flutter/
 │   │   └── splash_page.dart
 │   ├── firebase_options.dart
 │   └── main.dart
-├── .flutter-plugins
-├── .flutter-plugins-dependencies
 ├── .gitignore
 ├── .metadata
 ├── analysis_options.yaml
 ├── pubspec.lock
-├── pubspec.yaml
+├── pubspec.yaml #dependencies ที่ใช้ทั้งหมด
 └── README.md
 
 python-mobilenet/
@@ -61,7 +71,7 @@ python-mobilenet/
 - clone ทั้ง folder
 - เข้าไปที่ไฟล์ GoogleService-Info.plist จากนั้นก็เอา google maps api key ของตัวเองใส่ลงไปในช่อง string ใต้ API_KEY
 - 
-## ขั้นตอนการดาวโหลด dependencies and packages ที่จำเป็น
+## ขั้นตอนการดาวโหลด dependencies ที่จำเป็น และสำหรับใช้งาน iOS 
 
 - ดาวโหลด dependencies ของ flutter จะใช้คำสั่งใน terminal ดังนี้
 
