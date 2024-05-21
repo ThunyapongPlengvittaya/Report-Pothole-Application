@@ -42,6 +42,15 @@ pothole-flutter/
 ├── pubspec.yaml #dependencies ที่ใช้ทั้งหมด
 └── README.md
 
+python-mobilenet/
+├── __pycache__/
+│   └── mobilenet.cpython-311.pyc
+├── Dockerfile
+├── mobilenet.py
+├── pothole_3.h5
+└── server.py
+
+
 ```
 
 
