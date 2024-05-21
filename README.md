@@ -1,4 +1,4 @@
-## Directory Tree
+## Directory Structure
 
 ```plaintext
 src/
@@ -49,7 +49,7 @@ src/
 │   ├── analysis_options.yaml
 │   ├── pubspec.lock
 │   └── pubspec.yaml #dependencies ใน flutter ทั้งหมด
-├── PYTHON-MOBILENET/
+├── python-mobilenet/ #flask server สำหรับ trained-model
 │   ├── __pycache__/
 │   │   └── mobilenet.cpython-311.pyc
 │   ├── Dockerfile
@@ -72,9 +72,10 @@ src/
 
 ## ขั้นตอนการตั้งค่าเริ่มต้น
 
-- clone ทั้ง folder
-- เข้าไปที่ไฟล์ GoogleService-Info.plist จากนั้นก็เอา google maps api key ของตัวเองใส่ลงไปในช่อง string ใต้ API_KEY
-- 
+- จะเฉพาะ folder Pothole-flutter สำหรับการใช้งาน mobile application
+- clone ทั้ง folder Pothole-flutter
+- เข้าไปที่ไฟล์ GoogleService-Info.plist จากนั้นก็เอา Google Maps API key ของตัวเองใส่ลงไปในช่อง string ใต้ API_KEY
+
 ## ขั้นตอนการดาวโหลด dependencies ที่จำเป็น และสำหรับใช้งาน iOS 
 
 - ดาวโหลด dependencies ของ flutter จะใช้คำสั่งใน terminal ดังนี้
