@@ -1,45 +1,40 @@
 ## Directory Tree
 
 ```plaintext
-pothole-flutter/
-├── assets/ #image
-│   ├── location.png
-│   ├── pothole_icon.png
-│   └── splash_icon.png
+Pothole-flutter/
+├── assets/
 ├── ios/
-│   ├── Flutter/
-│   ├── Runner.xcodeproj
-│   ├── Runner.xcworkspace #ใช้เปิด xcode
-│   ├── Runner/
-│   ├── RunnerTests/
-│   ├── .gitignore
-│   ├── GoogleService-Info.plist #ใส่ google maps api key ลงไปในนี้
-│   ├── Podfile
-│   └── Podfile.lock
 ├── lib/
 │   ├── auth/
+│   │   ├── auth.dart
+│   │   └── login_or_register.dart
 │   ├── components/
 │   │   ├── my_button.dart
 │   │   └── my_textfield.dart
-│   ├── page/
+│   ├──  page/
 │   │   ├── admin/
 │   │   │   ├── pothole/
-│   │   │   │   ├── no_pothole_page.dart
-│   │   │   │   └── pothole_page.dart
-│   │   │   ├── admin_first_page.dart
-│   │   │   ├── admin_home_page.dart
-│   │   │   └── admin_second_page.dart
-│   │   └── user/
-│   │       ├── login_page.dart
-│   │       ├── register_page.dart
-│   │       └── splash_page.dart
+│   │   │   │   ├── admin_first_page.dart
+│   │   │   │   ├── admin_home_page.dart
+│   │   │   │   └── admin_second_page.dart
+│   │   ├── user/
+│   │   │   ├── user_history.dart
+│   │   │   ├── user_home_page.dart
+│   │   │   ├── user_main.dart
+│   │   │   ├── user_maps.dart
+│   │   │   └── user_profile.dart
+│   │   ├── login_page.dart
+│   │   ├── register_page.dart
+│   │   └── splash_page.dart
 │   ├── firebase_options.dart
 │   └── main.dart
+├── .flutter-plugins
+├── .flutter-plugins-dependencies
 ├── .gitignore
 ├── .metadata
 ├── analysis_options.yaml
 ├── pubspec.lock
-├── pubspec.yaml #dependencies ที่ใช้ทั้งหมด
+├── pubspec.yaml
 └── README.md
 
 python-mobilenet/
@@ -49,7 +44,6 @@ python-mobilenet/
 ├── mobilenet.py
 ├── pothole_3.h5
 └── server.py
-
 
 ```
 
@@ -67,7 +61,7 @@ python-mobilenet/
 - clone ทั้ง folder
 - เข้าไปที่ไฟล์ GoogleService-Info.plist จากนั้นก็เอา google maps api key ของตัวเองใส่ลงไปในช่อง string ใต้ API_KEY
 - 
-## ขั้นตอนการดาวโหลด dependencies ที่จำเป็น
+## ขั้นตอนการดาวโหลด dependencies and packages ที่จำเป็น
 
 - ดาวโหลด dependencies ของ flutter จะใช้คำสั่งใน terminal ดังนี้
 
@@ -84,6 +78,7 @@ pod install
 ## ขั้นตอนการเปิดใช้งาน Report pothole application เฉพาะใน iOS device simulator 
 - สร้าง simulator device ที่เป็น iphone version ไหนก็ได้ขึ้นมา
 - เปิด terminal ใน folder ของโปรเจคขึ้นมา แล้วรัน command ดังนี้
+
 ```bash
 flutter run
 ```
@@ -102,6 +97,5 @@ admin@gmail.com
 cstu65
 ```
 - เข้าสู่ระบบในสถานะ user สามารถสมัครได้เลย
-
 
 
