@@ -71,6 +71,7 @@ src/
 
 ## ขั้นตอนการตั้งค่าเริ่มต้น
 
+- download GoogleService-Info.plist จาก firebase project แล้วใส่ใน ios folder
 - จะเฉพาะ folder Pothole-flutter สำหรับการใช้งาน mobile application
 - clone ทั้ง folder Pothole-flutter
 - เข้าไปที่ไฟล์ GoogleService-Info.plist จากนั้นก็เอา Google Maps API key ของตัวเองใส่ลงไปในช่อง string ใต้ API_KEY
